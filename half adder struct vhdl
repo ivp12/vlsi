@@ -1,0 +1,38 @@
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity ha_structural is
+    Port ( a : in  STD_LOGIC;
+           b : in  STD_LOGIC;
+           sum : out  STD_LOGIC;
+           carry_out : out  STD_LOGIC);
+end ha_structural;
+
+architecture Behavioral of ha_structural is
+
+
+  component xor_gate is                  -- xor component declaration
+    port (i1, i2: in std_logic; 
+      o1: out std_logic);
+  end component;
+
+  component and_gate is                  -- and component declaration
+    port (i1, i2: in std_logic;
+      o1: out std_logic);
+  end component; 
+
+begin
+   u1: xor_gate port map (i1 => a, i2 => b, o1 => sum);
+   u2: and_gate port map (i1 => a, i2 => b, o1 => carry_out);
+
+end Behavioral;
